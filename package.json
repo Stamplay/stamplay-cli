@@ -22,6 +22,9 @@
   "engines": {
     "node": ">=0.10.0"
   },
+  "scripts": {
+    "test": "make stamplay"
+  },
   "engineStrict": true,
   "files": [
     "bin/**",
@@ -51,7 +54,7 @@
   "devDependencies": {
     "chai": "^1.10.0",
     "coveralls": "2.11.2",
-    "sinon": "^1.12.2"
+    "sinon": "1.12.2"
 
   }
 }
