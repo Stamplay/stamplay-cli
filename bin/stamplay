@@ -1,0 +1,64 @@
+#!/usr/bin/env node
+
+var argv = require('optimist')
+          .alias('s', 'stamplay')
+          .alias('h', 'help')
+          .alias('v', 'version')
+          .argv
+  , prompt = require('prompt')
+  , stamplay = require('../lib/stamplay')
+  , app = require('../lib/app')
+  , help = require('../lib/help');
+
+if (argv._.length === 0) {
+
+  if (argv.version) {
+    help.showVersion();
+  } else {
+    help.showHelp();
+  }
+
+} else {
+  if (
+    argv.h ||
+    argv.hel ||
+    argv.hep ||
+    argv.hepl ||
+    argv.help
+  ) {
+
+    help.showHelp(argv._[0]);
+
+  } else {
+    // Top-level router
+    switch (argv._[0]) {
+
+      // Top-level functionality
+      case 'add-app':
+        stamplay.addApp(argv);
+        break;
+      case 'deploy':
+        stamplay.deploy(argv);
+        break;
+      case 'start' :
+        stamplay.start();
+        break;
+
+      case 'init':
+        stamplay.init();
+        break;
+      case 'h':
+      case 'hel':
+      case 'hep':
+      case 'hepl':
+      case 'help':
+        help.showHelp();
+        break;
+
+      default:
+        console.log('\n' +
+          'Command not found. Use `stamplay --help` for a list of commands or\n' +
+          '`stamplay <command> --help` for more details\n');
+    }
+  }
+}
