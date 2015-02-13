@@ -1,5 +1,8 @@
 # Stamplay-cli
+
 [![Build Status](https://travis-ci.org/Stamplay/stamplay-cli.svg)](https://travis-ci.org/Stamplay/stamplay-cli)
+
+
 This is the Stamplay Command Line (CLI) Tool. They can be used to:
 
 * Administer your Stamplay account
