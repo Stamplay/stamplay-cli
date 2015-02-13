@@ -50,6 +50,8 @@
   },
   "devDependencies": {
     "chai": "^1.10.0",
-    "coveralls": "2.11.2"
+    "coveralls": "2.11.2",
+    "sinon": "^1.12.2"
+
   }
 }
