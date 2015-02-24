@@ -41,7 +41,7 @@
     "minimatch": "^2.0.1",
     "mkdir": "0.0.2",
     "mkdirp": "^0.5.0",
-    "open": "0.0.x",
+    "open": "0.0.5",
     "optimist": "0.6.x",
     "progress": "1.1.x",
     "prompt": "0.2.x",
@@ -55,6 +55,5 @@
     "chai": "^1.10.0",
     "coveralls": "2.11.2",
     "sinon": "1.12.2"
-
   }
 }

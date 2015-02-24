@@ -40,6 +40,9 @@ if (argv._.length === 0) {
       case 'deploy':
         stamplay.deploy(argv);
         break;
+      case 'open' :
+        stamplay.open(argv);
+        break;
       case 'start' :
         stamplay.start();
         break;
