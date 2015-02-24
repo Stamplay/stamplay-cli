@@ -28,5 +28,4 @@ This will provide you with the globally accessible `stamplay` command.
 
 ## Commands
 
-The command `stamplay --help` lists the available commands and `stamplay <command> --help` shows
-more details for an individual command.
+The command `stamplay --help` lists the available commands.
