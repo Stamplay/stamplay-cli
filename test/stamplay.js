@@ -26,7 +26,7 @@ suite('stamplay.js', function () {
 			done();
 		});
 
-		stamplay.addApp();
+		stamplay.download();
 	});
 
 })
