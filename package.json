@@ -1,7 +1,7 @@
 {
   "name": "stamplay-cli",
   "description": "Stamplay command line",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "Stamplay <mirko.diserafino@stamplay.com> (https://www.stamplay.com)",
   "licenses": [
     {
