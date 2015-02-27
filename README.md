@@ -1,6 +1,7 @@
 # Stamplay-cli
 
 [![Build Status](https://travis-ci.org/Stamplay/stamplay-cli.svg)](https://travis-ci.org/Stamplay/stamplay-cli)
+[![npm version](https://badge.fury.io/js/stamplay-cli.svg)](http://badge.fury.io/js/stamplay-cli)
 
 This is the Stamplay Command Line (CLI) Tool. They can be used to:
 
