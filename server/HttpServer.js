@@ -9,6 +9,9 @@ function HttpServer(appId, public_folder){
 	this.app.use(express.static(public_folder));
 	this.app.use(this.app.router);
 	this.proxy = httpProxy.createProxyServer();
+	this.proxy.on('error', function(err, req, res){
+		res.end();
+	})
 	this.setupRouter();
 	this.start();
 }
