@@ -1,7 +1,7 @@
 {
   "name": "stamplay-cli",
   "description": "Stamplay command line",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "author": "Stamplay <mirko.diserafino@stamplay.com> (https://www.stamplay.com)",
   "licenses": [
     {
@@ -39,10 +39,10 @@
     "celeri": "^0.3.4",
     "chalk": "^0.5.1",
     "fstream-ignore": "1.0.x",
-    "http-server": "^0.7.4",
     "minimatch": "^2.0.1",
     "mkdir": "0.0.2",
     "mkdirp": "^0.5.0",
+    "express": "^3.20",
     "open": "0.0.5",
     "optimist": "0.6.x",
     "progress": "1.1.x",
@@ -50,8 +50,7 @@
     "pump": "^1.0.0",
     "request": "2.51.x",
     "tar-fs": "^1.4.2",
-    "update-notifier": "^0.3.0",
-    "when": "3.6.x"
+    "update-notifier": "^0.3.0"
   },
   "devDependencies": {
     "chai": "^1.10.0",
