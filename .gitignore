@@ -7,10 +7,6 @@
 *.sublime-project
 *.sublime-workspace
 .dump.rdb
-app/stylesheets/editor.min.css
-app/stylesheets/editor-login.min.css
-app/img/previews
-app/views/editApp/_reports/
 
 # No codebase related stuff #
 #############################
@@ -33,10 +29,7 @@ Thumbs.db
 ###############
 node_modules
 npm-debug.log
-.nodemonignore
-bower_components
-app/dist
-app/test/lib
+
 
 # Others 			  #
 #######################
