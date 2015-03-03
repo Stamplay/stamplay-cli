@@ -6,3 +6,5 @@ stamplay:
 				@mocha ./test/bin/open.js
 				@mocha ./test/bin/start.js
 				@mocha ./test/bin/version.js
+				@mocha ./test/models/app.js
+				@mocha ./test/models/api.js

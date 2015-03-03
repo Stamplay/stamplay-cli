@@ -8,5 +8,5 @@ notifications:
   email:
   - mirko.diserafino@stamplay.com
   - claudio.petrini@stamplay.com
-  slack:
-    secure: SSJvRHEy30DEFjNcadAejJ0XP35e+HTnLoPwX0CSd0+J/OsNISo/ICbuEo44VTdGKP/quvGnvZq7F9t5ccaAdUyWkfTbr11eTwBKnsIBxjk/3GtA9yZO+OmcodywgPCRMzKzqLS3IOgp04KLkKI241XjLZ8Z2QJF7CQSE6M5Tm8=
+ after_script:
+- cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js

@@ -55,9 +55,8 @@
   },
   "devDependencies": {
     "chai": "^1.10.0",
-    "sinon": "^1.12.2",
-    "coveralls": "2.11.2",
-    "rimraf": "^2.2.8",
-    "sinon": "1.12.2"
+    "nock": "^0.59.1",
+    "sinon": "1.12.2",
+    "rimraf": "^2.2.8"
   }
 }
