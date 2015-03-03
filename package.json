@@ -1,7 +1,7 @@
 {
   "name": "stamplay-cli",
   "description": "Stamplay command line",
-  "version": "1.1.1",
+  "version": "1.1.5",
   "author": "Stamplay <mirko.diserafino@stamplay.com> (https://www.stamplay.com)",
   "licenses": [
     {
@@ -44,7 +44,6 @@
     "http-proxy": "^1.8.1",
     "minimatch": "^2.0.1",
     "mkdir": "0.0.2",
-    "mkdirp": "^0.5.0",
     "open": "0.0.5",
     "optimist": "0.6.x",
     "progress": "1.1.x",
@@ -56,7 +55,8 @@
   },
   "devDependencies": {
     "chai": "^1.10.0",
-    "coveralls": "2.11.2",
-    "sinon": "1.12.2"
+    "nock": "^0.59.1",
+    "sinon": "1.12.2",
+    "rimraf": "^2.2.8"
   }
 }
