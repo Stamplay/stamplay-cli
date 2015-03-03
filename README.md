@@ -27,9 +27,33 @@ npm install -g stamplay-cli
 This will provide you with the globally accessible `stamplay` command.
 
 
-## Commands
+## Help
 
 The command `stamplay --help` lists the available commands.
+
+## Commands
+
+### `deploy`
+Deploys the current app to Stamplay and creates a new version.
+
+Uploads the directory detailed by the "public" attribute in the stamplay.json settings file under. The app must contain an entry point file called index.html at root level of your public directory. If no file is found you'll be prompted to create it.
+
+### `download`
+Download the current active version of an app.
+
+You will be prompted to type appId and apiKey, if you don't have it go into your app on https://editor.stamplay.com and get them under Backend -> ApiKey section.
+
+### `init`
+Initializes an existing Stamplay app in the current directory and prompts you to configuring it for stamplayapp.com. 
+
+Running stamplay init in an existing repository is safe. It will not overwrite things that are already there.  
+It only Generates a stamplay.json file in the current directory with all the settings required to deploy it. If you don't have appId and apiKey yet open https://editor.stamplay.com and create a new app.
+
+### `open`
+Opens the current Stamplay app's stamplayapp.com subdomain in a browser.
+
+### `start`
+Start serving your app on your localhost. The public folder will be served at the following address http://localhost:8080.
 
 ## License
 
