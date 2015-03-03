@@ -27,10 +27,6 @@ npm install -g stamplay-cli
 This will provide you with the globally accessible `stamplay` command.
 
 
-## Help
-
-The command `stamplay --help` lists the available commands.
-
 ## Commands
 
 ### `deploy`
@@ -54,6 +50,12 @@ Opens the current Stamplay app's stamplayapp.com subdomain in a browser.
 
 ### `start`
 Start serving your app on your localhost. The public folder will be served at the following address http://localhost:8080.
+
+
+## Help
+
+The command `stamplay --help` lists the available commands.
+
 
 ## License
 
