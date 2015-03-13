@@ -53,6 +53,7 @@ describe('Test on ApiRequest model', function(){
 	});
 
 	it('Method : checkCredentials', function(done){
+		this.timeout(5000);
 		var api = new ApiRequest(appId, apiKey, ['**/.*']);
 		var options = api.checkCredentials(function(){
 			done();
@@ -80,6 +81,31 @@ describe('Test on ApiRequest model', function(){
 		api.downloadFolder(function(){});
 		process.exit = function(code){
 			assert.equal(code, 1);
+			scope.isDone();
+			done();
+		}
+	});
+
+	it('Method : getVersionsList', function(done){
+		var scope = nock('http://cli.stamplayapp.com')
+      .get('/versions')
+      .reply(200, {data:[{versionId:'v1'}]});
+		var api = new ApiRequest(appId, apiKey, ['**/.*']);
+		api.getVersionsList(function(data){
+			scope.isDone();
+			assert.equal(data.length, 1);
+			assert.equal(data[0].versionId, 'v1');
+			done();
+		});
+	});
+
+	it('Method : rollbackToVersion', function(done){
+		var scope = nock('http://cli.stamplayapp.com')
+      .post('/rollback',{version: 'v1'})
+      .reply(200);
+		var api = new ApiRequest(appId, apiKey, ['**/.*']);
+		api.rollbackToVersion('v1');
+		process.exit = function(){
 			scope.isDone();
 			done();
 		}

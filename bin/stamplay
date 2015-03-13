@@ -45,6 +45,9 @@ if (argv._.length === 0) {
       case 'start' :
         stamplay.start();
         break;
+      case 'rollback' :
+        stamplay.rollback();
+        break;
 
       case 'init':
         stamplay.init();

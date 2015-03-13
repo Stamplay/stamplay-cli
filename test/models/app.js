@@ -3,7 +3,7 @@ var App = require('../../lib/app'),
 		rmdir = require('rimraf'),
 		fs = require('fs'),
 		sinon = require('sinon'),
-		path = require('path')
+		path = require('path');
 
 var appId = 'clitest';
 var apiKey = 'c4300c0c4c0df03e9fbaae97e53f297347fcd5d7b44811c2025dd52fd2f45843';
