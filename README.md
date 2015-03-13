@@ -48,6 +48,9 @@ It only Generates a stamplay.json file in the current directory with all the set
 ### `open`
 Opens the current Stamplay app's stamplayapp.com subdomain in a browser.
 
+### `rollback`
+Restore in production a previously deployed version. You'll be prompted to pick one of your previous deploys from a list.
+
 ### `start`
 Start serving your app on your localhost. The public folder will be served at the following address http://localhost:8080.
 
