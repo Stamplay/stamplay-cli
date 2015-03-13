@@ -105,8 +105,7 @@ describe('Test on ApiRequest model', function(){
       .reply(200);
 		var api = new ApiRequest(appId, apiKey, ['**/.*']);
 		api.rollbackToVersion('v1');
-		process.exit = function(code){
-			assert.equal(code, 1);
+		process.exit = function(){
 			scope.isDone();
 			done();
 		}
