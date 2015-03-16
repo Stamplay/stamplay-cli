@@ -21,13 +21,22 @@ HttpServer.prototype.setupRouter = function() {
 	var host = this.appId + '.stamplayapp.com';
 	this.app.all(/^(\/api\/.*)/, function(req, res){
 		req.headers.host = host;
+		_addSdkHeader.call(_this, req);
 		_this.proxy.web(req, res, { target: 'http://'+host });
 	});
+
 	this.app.all(/^(\/auth\/.*)/, function(req, res){		
 		req.headers.host = host;
+		_addSdkHeader.call(_this, req);
 		_this.proxy.web(req, res, { target: 'http://'+host });
 	});
 };
+
+var _addSdkHeader = function(req) {
+	if(req.headers['stamplay-app']){
+		req.headers['stamplay-app'] = this.appId;
+	};
+}
 
 
 HttpServer.prototype.start = function() {
