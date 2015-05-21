@@ -34,7 +34,7 @@ describe('Test on ApiRequest model', function(){
 	it('App constructor', function(){
 		var api = new ApiRequest(appId, apiKey, ['**/.*']);
 		assert.equal(api.host, "cli.stamplayapp.com");
-		assert.equal(api.port, "80");
+		assert.equal(api.port, "443");
 		assert.equal(api.appId, appId);
 		assert.equal(api.apiKey, apiKey);
 		assert.equal(api.filesToIgnore.length, 1);
@@ -61,6 +61,7 @@ describe('Test on ApiRequest model', function(){
 	});
 
 	it('Method : uploadFolder', function(done){
+		this.timeout(4000)
 		var scope = nock('http://cli.stamplayapp.com')
       .post('/deploy?comment=test')
       .reply(200);
@@ -93,7 +94,7 @@ describe('Test on ApiRequest model', function(){
 		var api = new ApiRequest(appId, apiKey, ['**/.*']);
 		api.getVersionsList(function(data){
 			scope.isDone();
-			assert.equal(data.length, 1);
+			assert(data.length > 1);
 			assert.equal(data[0].versionId, 'v1');
 			done();
 		});
