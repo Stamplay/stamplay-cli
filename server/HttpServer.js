@@ -22,13 +22,13 @@ HttpServer.prototype.setupRouter = function() {
 	this.app.all(/^(\/api\/.*)/, function(req, res){
 		req.headers.host = host;
 		_addSdkHeader.call(_this, req);
-		_this.proxy.web(req, res, { target: 'http://'+host });
+		_this.proxy.web(req, res, { target: 'https://'+host });
 	});
 
 	this.app.all(/^(\/auth\/.*)/, function(req, res){		
 		req.headers.host = host;
 		_addSdkHeader.call(_this, req);
-		_this.proxy.web(req, res, { target: 'http://'+host });
+		_this.proxy.web(req, res, { target: 'https://'+host });
 	});
 };
 
