@@ -1,5 +1,5 @@
 # v1.3.2
-- Social login works locally
+- Social login works locally 
 
 # v1.2.0
 - Https support
