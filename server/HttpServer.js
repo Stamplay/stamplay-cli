@@ -26,8 +26,10 @@ HttpServer.prototype.setupRouter = function() {
 	});
 
 	this.app.all(/^(\/auth\/.*)/, function(req, res){		
+		var localHost = req.headers.host;
 		req.headers.host = host;
 		_addSdkHeader.call(_this, req);
+		_addSocialLoginHeader.call(_this, req, localHost);
 		_this.proxy.web(req, res, { target: 'https://'+host });
 	});
 };
@@ -36,6 +38,11 @@ var _addSdkHeader = function(req) {
 	if(req.headers['stamplay-app']){
 		req.headers['stamplay-app'] = this.appId;
 	};
+}
+
+
+var _addSocialLoginHeader = function(req, localHost) {
+	req.headers['x-local-host'] = localHost;
 }
 
 
