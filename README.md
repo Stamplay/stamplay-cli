@@ -30,6 +30,10 @@ This will provide you with the globally accessible `stamplay` command.
 ## Commands
 
 ### `deploy`
+```
+options:
+   -m "msg", --message "msg"      Use the given "msg" as the deploy message.
+```  
 Deploys the current app to Stamplay and creates a new version.
 
 Uploads the directory detailed by the "public" attribute in the stamplay.json settings file under. The app must contain an entry point file called index.html at root level of your public directory. If no file is found you'll be prompted to create it.
