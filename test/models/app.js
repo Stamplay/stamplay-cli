@@ -51,16 +51,6 @@ describe('Test on App model', function(){
 		assert.equal(schema.properties.apiKey.message, 'ApiKey must be only letters, numbers or dashes.');
 	});
 
-	it('Method : getCommentSchema', function(){
-		var app = new App();
-		var schema = app.getCommentSchema();
-		assert.equal(Object.keys(schema.properties).length, 1);
-		assert.equal(schema.properties.comment.required, true);
-		assert.equal(schema.properties.comment.type, 'string');
-		assert.equal(schema.properties.comment.description, 'Insert a comment for your version:');
-		assert.equal(schema.properties.comment.message, 'Comment must be a string.');
-	});
-
 	it('Method : existsIndexInPublicFolder (no index.html)', function(){
 		var app = new App();
 		app.public_folder = './';
