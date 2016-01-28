@@ -8,14 +8,14 @@ var argv = require('optimist')
   , prompt = require('prompt')
   , stamplay = require('../lib/stamplay')
   , app = require('../lib/app')
-  , help = require('../lib/help');
+  , help = require('../lib/help')
 
 
 if (argv._.length === 0) {
   if (argv.version) {
-    help.showVersion();
+    help.showVersion()
   } else {
-    help.showHelp();
+    help.showHelp()
   }
 
 } else {
@@ -27,42 +27,42 @@ if (argv._.length === 0) {
     argv.help
   ) {
 
-    help.showHelp(argv._[0]);
+    help.showHelp(argv._[0])
 
   } else {
     
     switch (argv._[0]) {
 
       case 'download':
-        stamplay.download(argv);
-        break;
+        stamplay.download(argv)
+        break
       case 'deploy':
-        stamplay.deploy(argv);
-        break;
+        stamplay.deploy(argv)
+        break
       case 'open' :
-        stamplay.open(argv);
-        break;
+        stamplay.open(argv)
+        break
       case 'start' :
-        stamplay.start();
-        break;
+        stamplay.start(argv)
+        break
       case 'rollback' :
-        stamplay.rollback();
-        break;
+        stamplay.rollback()
+        break
 
       case 'init':
-        stamplay.init();
-        break;
+        stamplay.init(argv)
+        break
       case 'h':
       case 'hel':
       case 'hep':
       case 'hepl':
       case 'help':
-        help.showHelp();
-        break;
+        help.showHelp()
+        break
 
       default:
         console.log('\n' +
-          'Command not found. Use `stamplay --help` for a list of commands \n');
+          'Command not found. Use `stamplay --help` for a list of commands \n')
     }
   }
 }
