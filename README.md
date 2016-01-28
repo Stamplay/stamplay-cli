@@ -30,16 +30,29 @@ This will provide you with the globally accessible `stamplay` command.
 ## Commands
 
 ### `deploy`
+```
+options:
+   -m "msg", --message "msg"      Use the given "msg" as the deploy message.
+```  
 Deploys the current app to Stamplay and creates a new version.
 
 Uploads the directory detailed by the "public" attribute in the stamplay.json settings file under. The app must contain an entry point file called index.html at root level of your public directory. If no file is found you'll be prompted to create it.
 
 ### `download`
+```
+options:
+   --proxy "address"      the requests will be sent via a connection to the proxy server.
+```  
+
 Download the current active version of an app.
 
 You will be prompted to type appId and apiKey, if you don't have it go into your app on https://editor.stamplay.com and get them under Backend -> ApiKey section.
 
 ### `init`
+```
+options:
+   --proxy "address"      the requests will be sent via a connection to the proxy server.
+```  
 Initializes an existing Stamplay app in the current directory and prompts you to configuring it for stamplayapp.com. 
 
 Running stamplay init in an existing repository is safe. It will not overwrite things that are already there.  

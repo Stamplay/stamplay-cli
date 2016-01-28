@@ -1,3 +1,6 @@
+# v1.3.3
+- Comment as optional parameter with -m or --message
+
 # v1.3.2
 - Social login works locally 
 
