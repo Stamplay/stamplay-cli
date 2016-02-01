@@ -1,3 +1,6 @@
+# v1.3.5
+- Added --spa option in help command
+
 # v1.3.4
 - Added options --proxy for working behind a proxy
 - Added options --spa for working locally as single page
