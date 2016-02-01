@@ -32,7 +32,7 @@ This will provide you with the globally accessible `stamplay` command.
 ### `deploy`
 ```
 options:
-   -m "msg", --message "msg"      Use the given "msg" as the deploy message.
+   -m "msg", --message "msg"  Use the given "msg" as the deploy message.
 ```  
 Deploys the current app to Stamplay and creates a new version.
 
@@ -41,7 +41,7 @@ Uploads the directory detailed by the "public" attribute in the stamplay.json se
 ### `download`
 ```
 options:
-   --proxy "address"      the requests will be sent via a connection to the proxy server.
+   --proxy "address"       The requests will be sent via a connection to the proxy server.
 ```  
 
 Download the current active version of an app.
@@ -51,21 +51,25 @@ You will be prompted to type appId and apiKey, if you don't have it go into your
 ### `init`
 ```
 options:
-   --proxy "address"      the requests will be sent via a connection to the proxy server.
+   --proxy "address"       The requests will be sent via a connection to the proxy server.
 ```  
 Initializes an existing Stamplay app in the current directory and prompts you to configuring it for stamplayapp.com. 
 
 Running stamplay init in an existing repository is safe. It will not overwrite things that are already there.  
 It only Generates a stamplay.json file in the current directory with all the settings required to deploy it. If you don't have appId and apiKey yet open https://editor.stamplay.com and create a new app.
 
+### `start`
+Start serving your app on your localhost. The public folder will be served at the following address http://localhost:8080.
+```
+options:
+   --spa                   Enable Single Page Application mode (Rewrite all URLs to index.html,
+                           use it to support pretty URLs with AngularJS HTML5 Mode).
+```  
 ### `open`
 Opens the current Stamplay app's stamplayapp.com subdomain in a browser.
 
 ### `rollback`
 Restore in production a previously deployed version. You'll be prompted to pick one of your previous deploys from a list.
-
-### `start`
-Start serving your app on your localhost. The public folder will be served at the following address http://localhost:8080.
 
 
 ## Help
