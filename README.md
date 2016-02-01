@@ -59,12 +59,13 @@ Running stamplay init in an existing repository is safe. It will not overwrite t
 It only Generates a stamplay.json file in the current directory with all the settings required to deploy it. If you don't have appId and apiKey yet open https://editor.stamplay.com and create a new app.
 
 ### `start`
-Start serving your app on your localhost. The public folder will be served at the following address http://localhost:8080.
 ```
 options:
    --spa                   Enable Single Page Application mode (Rewrite all URLs to index.html,
                            use it to support pretty URLs with AngularJS HTML5 Mode).
 ```  
+Start serving your app on your localhost. The public folder will be served at the following address http://localhost:8080.
+
 ### `open`
 Opens the current Stamplay app's stamplayapp.com subdomain in a browser.
 
