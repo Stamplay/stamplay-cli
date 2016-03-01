@@ -49,6 +49,34 @@ describe('Test on ApiRequest model', function(){
 		assert.equal(options.headers.authorization, authorization_header)
 	})
 
+	it('Method : getRequestOptions with json response', function(){
+		var api = new ApiRequest(appId, apiKey, ['**/.*'])
+		var options = api.getRequestOptions('POST', '/deploy', true)
+		assert.equal(options.method, 'POST')
+		assert.equal(options.url, 'https://cli.stamplayapp.com/deploy')
+		assert.equal(Object.keys(options.headers).length, 1)
+		assert.equal(options.headers.authorization, authorization_header)
+		assert.equal(options.json, true)
+	})
+
+	it('Method : getRequestOptions with custom headers', function(){
+		var headers = [{
+			source: '*.js',
+			headers: [{
+				key: 'cache-control',
+				value: 'max-age=10'
+			}]
+		}]
+		var api = new ApiRequest(appId, apiKey, ['**/.*'])
+		var options = api.getRequestOptions('POST', '/deploy', false, headers)
+		assert.equal(options.method, 'POST')
+		assert.equal(options.url, 'https://cli.stamplayapp.com/deploy')
+		assert.equal(Object.keys(options.headers).length, 2)
+		assert.equal(options.headers.authorization, authorization_header)
+		assert.equal(options.headers['custom-headers'], 'eJyLrlYqzi8tSk5VslLS0ssqVtJRykhNTEktKlayiq5Wyk6tBEokJyZnpOom5+eVFOXnAFWUJeaUgjTkJlboJqan2hoaKNXG1sYCALsBGOU=')
+		
+	})
+
 	it('Method : checkCredentials', function(done){
 		this.timeout(5000)
 		var api = new ApiRequest(appId, apiKey, ['**/.*'])

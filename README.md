@@ -9,7 +9,7 @@ This is the Stamplay Command Line (CLI) Tool. They can be used to:
 * Interact with [Stamplay Platform](https://editor.stamplay.com), our product to host your
 static HTML, JS, CSS, images, etc.
 
-To get started with the Stamplay CLI, [read through our hosting quickstart guide](https://stamplay.com/docs/hosting.html).
+To get started with the Stamplay CLI, [read through our hosting quickstart guide](https://stamplay.com/docs/hosting/command-line).
 
 ## Installation
 
