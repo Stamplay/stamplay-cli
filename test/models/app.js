@@ -67,14 +67,23 @@ describe('Test on App model', function(){
 
 	it('Method : createStamplayJson', function(){
 		fs.unlinkSync(fixtures_folder + '/stamplay.json')
+		var headers = [{
+      headers: [{
+         key: "cache-control",
+         value: "max-age=10"
+        }],
+      source: "*.html"
+    }]
+
 		var app = new App(appId, apiKey)
-		var exists = app.createStamplayJson(fixtures_folder, {})
+		var exists = app.createStamplayJson(fixtures_folder, {}, headers)
 		assert.equal(fs.existsSync(fixtures_folder + '/stamplay.json'), true)
 		var stamplay_json = require(fixtures_folder + '/stamplay.json')
 		assert.equal(stamplay_json.appId, appId)
 		assert.equal(stamplay_json.apiKey, apiKey)
 		assert.equal(stamplay_json.public, './')
 		assert.equal(stamplay_json.ignore.length, 3)
+		assert.equal(JSON.stringify(stamplay_json.headers), JSON.stringify(headers));
 	})
 
 	it('Method : readStamplayJson', function(){
