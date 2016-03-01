@@ -1,3 +1,6 @@
+# v1.3.9
+- Upgrade engines.node version
+
 # v1.3.8
 - Remove console.log
 
