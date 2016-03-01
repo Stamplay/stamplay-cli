@@ -9,3 +9,4 @@ stamplay:
 				@mocha ./test/bin/version.js
 				@mocha ./test/models/app.js
 				@mocha ./test/models/api.js
+				@mocha ./test/validator/headers.js
