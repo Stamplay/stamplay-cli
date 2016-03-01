@@ -1,3 +1,6 @@
+# v1.3.7
+- Download command restores user defined headers
+
 # v1.3.6
 - Added support for user defined headers
 
