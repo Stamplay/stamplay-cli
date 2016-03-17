@@ -59,7 +59,7 @@ describe('Stamplay cli deploy command', function () {
 			})
 			
 			terminal.on('exit', function () {
-				assert.equal(res.toString(), 'Missing index.html in your public folder undefined please edit stamplay.json\n')
+				assert.equal(res.toString(), 'Missing index.html in your public folder ./ please edit stamplay.json\n')
 				done()
 			})
 			
