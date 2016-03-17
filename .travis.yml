@@ -3,7 +3,7 @@ before_script:
 - npm install
 language: node_js
 node_js:
-- '0.10'
+- '0.12'
 notifications:
   email:
   - mirko.diserafino@stamplay.com
