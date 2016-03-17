@@ -32,7 +32,7 @@ This will provide you with the globally accessible `stamplay` command.
 ### `deploy`
 ```
 options:
-   -m "msg", --message "msg"  Use the given "msg" as the deploy message.
+   --message "msg", -m "msg"  Use the given "msg" as the deploy message.
 ```  
 Deploys the current app to Stamplay and creates a new version.
 
@@ -61,6 +61,7 @@ It only Generates a stamplay.json file in the current directory with all the set
 ### `start`
 ```
 options:
+	 --port, -p							 Specifies a custom port where the local server must run.
    --spa                   Enable Single Page Application mode (Rewrite all URLs to index.html,
                            use it to support pretty URLs with AngularJS HTML5 Mode).
 ```  
