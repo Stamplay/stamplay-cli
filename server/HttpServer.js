@@ -5,11 +5,12 @@ var express = require('express')
   , path = require('path')
 
 
-function HttpServer(appId, public_folder, argv){
+function HttpServer(appId, public_folder, argv, local_port){
 	this.app = express()
 	this.appId = appId
 	this.public_folder = public_folder
 	this.spa_mode = argv.spa
+	this.local_port = local_port
 
 	if (this.spa_mode){
 		this.app.use(_detectSpaUrl)
@@ -66,8 +67,8 @@ var _addSocialLoginHeader = function(req, localHost) {
 
 HttpServer.prototype.start = function() {
 	var _this = this
-	http.createServer(this.app).listen(8080, function (req, res) {
-	  console.log('Server running with ' + _this.public_folder + ' as public folder at the following address http://localhost:8080')
+	http.createServer(this.app).listen(this.local_port, function (req, res) {
+	  console.log('Server running with ' + _this.public_folder + ' as public folder at the following address http://localhost:' + _this.local_port)
 	})
 }
 
