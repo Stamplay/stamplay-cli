@@ -1,3 +1,7 @@
+# v1.4.1
+- Fix context variable
+- Added "main" property on package.json
+
 # v1.4.0
 - Added options --port or -p to start command to specifiy custom port
 
