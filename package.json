@@ -18,6 +18,7 @@
     "stamplay",
     "synchronization"
   ],
+  "main": "lib/stamplay.js",
   "bin": {
     "stamplay": "./bin/stamplay"
   },
