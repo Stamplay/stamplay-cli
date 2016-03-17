@@ -1,3 +1,6 @@
+# v1.4.0
+- Added options --port or -p to start command to specifiy custom port
+
 # v1.3.9
 - Upgrade engines.node version
 
