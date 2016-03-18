@@ -1,3 +1,6 @@
+# v1.4.2
+- Fixed exit codes
+
 # v1.4.1
 - Fix context variable
 - Added "main" property on package.json
