@@ -11,6 +11,8 @@ var apiKey = 'c4300c0c4c0df03e9fbaae97e53f297347fcd5d7b44811c2025dd52fd2f45843'
 var authorization_header = 'Basic Y2xpdGVzdDpjNDMwMGMwYzRjMGRmMDNlOWZiYWFlOTdlNTNmMjk3MzQ3ZmNkNWQ3YjQ0ODExYzIwMjVkZDUyZmQyZjQ1ODQz'
 var fixtures_folder = path.join(__dirname, '../', '/fixtures')
 
+var final_exit = process.exit
+
 describe('Test on ApiRequest model', function(){
 	
 	before(function(done){
@@ -92,12 +94,9 @@ describe('Test on ApiRequest model', function(){
       .reply(200)
 		var api = new ApiRequest(appId, apiKey, ['**/.*'])
 		api.uploadFolder(fixtures_folder, 'test')
-		process.exit = function(code){
-			if (code == 1) {
-				assert.equal(code, 1)
-				scope.isDone()
-				done()
-			}
+		process.exit = function(){
+			scope.isDone()
+			done()
 		}
 	})
 
@@ -107,12 +106,10 @@ describe('Test on ApiRequest model', function(){
       .reply(200)
 		var api = new ApiRequest(appId, apiKey, ['**/.*'])
 		api.downloadFolder(function(){})
-		process.exit = function(code){
-			if (code == 1) {
-				assert.equal(code, 1)
-				scope.isDone()
-				done()
-			}
+		process.exit = function(){
+			scope.isDone()
+			done()
+			
 		}
 	})
 
@@ -135,11 +132,10 @@ describe('Test on ApiRequest model', function(){
       .reply(200)
 		var api = new ApiRequest(appId, apiKey, ['**/.*'])
 		api.rollbackToVersion('v1')
-		process.exit = function(code){
-			if (code == 1){
-				scope.isDone()
-				done()
-			}
+		process.exit = function(){
+			scope.isDone()
+			done()
+			this.exit = final_exit
 		}
 	})
 })
