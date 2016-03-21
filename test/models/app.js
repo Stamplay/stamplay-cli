@@ -86,12 +86,27 @@ describe('Test on App model', function(){
 		assert.equal(JSON.stringify(stamplay_json.headers), JSON.stringify(headers));
 	})
 
-	it('Method : readStamplayJson', function(){
+	it('Method : readStamplayJson reading the file', function(){
 		var app = new App(appId, apiKey)
 		app.readStamplayJson(fixtures_folder)
 		assert.equal(app.appId, appId)
 		assert.equal(app.apiKey, apiKey)
 		assert.equal(app.public_folder, './')
 		assert.equal(app.ignore.length, 3)
+	})
+
+	it('Method : readStamplayJson with external configuration', function(){
+		var config = {}
+		config.appId = appId
+		config.apiKey = apiKey
+		config.public = './'
+		config.ignore = []
+
+		var app = new App(appId, apiKey)
+		app.readStamplayJson(null, config)
+		assert.equal(app.appId, appId)
+		assert.equal(app.apiKey, apiKey)
+		assert.equal(app.public_folder, './')
+		assert.equal(app.ignore.length, 0)
 	})
 })

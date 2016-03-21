@@ -1,3 +1,6 @@
+# v1.4.3
+- Added support for grunt/gulp
+
 # v1.4.2
 - Fixed exit codes
 
