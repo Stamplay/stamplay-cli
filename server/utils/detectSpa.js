@@ -1,5 +1,5 @@
 module.exports = function detectSpaUrl(req, res, next) {
-  const isHome = req.url.match(/\/$/);
+  const isHome = req.url.match(/^\/$/);
   const hasExtention = req.url.match(/\.[\w]+(\?.*)?$/);
   const isNotFound = req.url.match(/\/404$|\/404\.html$/);
   const isApi = req.url.match(/^(\/api\/.*)/);

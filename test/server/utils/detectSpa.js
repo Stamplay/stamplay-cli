@@ -28,6 +28,17 @@ describe('Detect SPA routing logic', () => {
     });
   });
 
+  it('should request index.html if no extension is found even with trailing /', (done) => {
+    const url = '/app/admin/';
+    const req = {
+      url,
+    };
+    detectSpa(req, res, () => {
+      assert.strictEqual(req.url, homeUrl);
+      done();
+    });
+  });
+
   it('should request index.html if no extension is found and query parameter is present', (done) => {
     const url = '/app/admin?view=5';
     const req = {
@@ -45,6 +56,17 @@ describe('Detect SPA routing logic', () => {
 
   it('should request index.html if no extension is found, even if dots are contained in middle of url', (done) => {
     const url = '/app/admin/dash.board/payment';
+    const req = {
+      url,
+    };
+    detectSpa(req, res, () => {
+      assert.strictEqual(req.url, homeUrl);
+      done();
+    });
+  });
+
+  it('should request index.html if no extension is found, even with dots and / at the end', (done) => {
+    const url = '/app/admin/dash.board/payment/';
     const req = {
       url,
     };
