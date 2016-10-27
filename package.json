@@ -1,7 +1,7 @@
 {
   "name": "stamplay-cli",
   "description": "Stamplay command line",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "author": "Stamplay <mirko.diserafino@stamplay.com> (https://www.stamplay.com)",
   "licenses": [
     {
@@ -23,7 +23,7 @@
     "stamplay": "./bin/stamplay"
   },
   "engines": {
-    "node": ">=0.12.0"
+    "node": ">=4.0.0"
   },
   "scripts": {
     "test": "make stamplay"
