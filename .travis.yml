@@ -3,7 +3,17 @@ before_script:
 - npm install
 language: node_js
 node_js:
-- '0.12'
+- '7.0.0'
+- '6.9.1'
+- '4.6.1'
+env:
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
 notifications:
   email:
   - mirko.diserafino@stamplay.com

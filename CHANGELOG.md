@@ -1,3 +1,7 @@
+# v1.4.4
+- Fix on SPA when dots occourred in url
+- Fix on SPA when trailing slash occurs in url 
+
 # v1.4.3
 - Added support for grunt/gulp
 

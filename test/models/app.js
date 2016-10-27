@@ -1,36 +1,35 @@
 var App = require('../../lib/app'),
-		assert = require('assert'),
-		rmdir = require('rimraf'),
-		fs = require('fs'),
-		sinon = require('sinon'),
-		path = require('path')
+	assert = require('assert'),
+	rmdir = require('rimraf'),
+	fs = require('fs'),
+	sinon = require('sinon'),
+	path = require('path')
 
 var appId = 'clitest'
 var apiKey = 'c4300c0c4c0df03e9fbaae97e53f297347fcd5d7b44811c2025dd52fd2f45843'
 var fixtures_folder = path.join(__dirname, '../', '/fixtures')
 
+describe('Test on App model', function () {
 
-describe('Test on App model', function(){
-	
-	before(function(done){
+	before(function (done) {
 		var data = {}
 		data.appId = appId
 		data.apiKey = apiKey
 		data.public = './'
 		data.ignore = ["stamplay.json", "**/.*", "**/node_modules/**"]
 		var dataString = JSON.stringify(data, null, 2) + '\n'
-		rmdir(fixtures_folder, function(){
-			fs.mkdir(fixtures_folder, function(){
-  			fs.writeFile(fixtures_folder + '/stamplay.json', dataString, function(){
-  				fs.writeFile(fixtures_folder + '/index.html', '<h1>test</h1>', function(){
-  					done()
-  				})
-  			})
-  		})
+		rmdir(fixtures_folder, function () {
+			fs.mkdir(fixtures_folder, function () {
+				fs.writeFile(fixtures_folder + '/stamplay.json', dataString, function () {
+					fs.writeFile(fixtures_folder + '/index.html', '<h1>test</h1>', function () {
+						done()
+					})
+				})
+			})
 		})
 	})
 
-	it('App constructor', function(){
+	it('App constructor', function () {
 		var app = new App()
 		assert.equal(app.hostingUrl, "https://stamplayapp.com")
 		assert.equal(app.appId, undefined)
@@ -39,7 +38,7 @@ describe('Test on App model', function(){
 		assert.equal(app.ignore, undefined)
 	})
 
-	it('Method : getCredentialsSchema', function(){
+	it('Method : getCredentialsSchema', function () {
 		var app = new App()
 		var schema = app.getCredentialsSchema()
 		assert.equal(Object.keys(schema.properties).length, 2)
@@ -51,28 +50,28 @@ describe('Test on App model', function(){
 		assert.equal(schema.properties.apiKey.message, 'ApiKey must be only letters, numbers or dashes.')
 	})
 
-	it('Method : existsIndexInPublicFolder (no index.html)', function(){
+	it('Method : existsIndexInPublicFolder (no index.html)', function () {
 		var app = new App()
 		app.public_folder = './'
 		var exists = app.existsIndexInPublicFolder()
 		assert.equal(exists, false)
 	})
 
-	it('Method : existsIndexInPublicFolder', function(){
+	it('Method : existsIndexInPublicFolder', function () {
 		var app = new App()
 		app.public_folder = fixtures_folder
 		var exists = app.existsIndexInPublicFolder()
 		assert.equal(exists, true)
 	})
 
-	it('Method : createStamplayJson', function(){
+	it('Method : createStamplayJson', function () {
 		fs.unlinkSync(fixtures_folder + '/stamplay.json')
 		var headers = [{
-      headers: [{
-         key: "cache-control",
-         value: "max-age=10"
+			headers: [{
+				key: "cache-control",
+				value: "max-age=10"
         }],
-      source: "*.html"
+			source: "*.html"
     }]
 
 		var app = new App(appId, apiKey)
@@ -86,7 +85,7 @@ describe('Test on App model', function(){
 		assert.equal(JSON.stringify(stamplay_json.headers), JSON.stringify(headers));
 	})
 
-	it('Method : readStamplayJson reading the file', function(){
+	it('Method : readStamplayJson reading the file', function () {
 		var app = new App(appId, apiKey)
 		app.readStamplayJson(fixtures_folder)
 		assert.equal(app.appId, appId)
@@ -95,7 +94,7 @@ describe('Test on App model', function(){
 		assert.equal(app.ignore.length, 3)
 	})
 
-	it('Method : readStamplayJson with external configuration', function(){
+	it('Method : readStamplayJson with external configuration', function () {
 		var config = {}
 		config.appId = appId
 		config.apiKey = apiKey

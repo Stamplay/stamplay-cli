@@ -1,7 +1,7 @@
 {
   "name": "stamplay-cli",
   "description": "Stamplay command line",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "author": "Stamplay <mirko.diserafino@stamplay.com> (https://www.stamplay.com)",
   "licenses": [
     {
@@ -23,7 +23,7 @@
     "stamplay": "./bin/stamplay"
   },
   "engines": {
-    "node": ">=0.12.0"
+    "node": ">=4.0.0"
   },
   "scripts": {
     "test": "make stamplay"
@@ -45,7 +45,6 @@
     "celeri": "^0.3.4",
     "chalk": "^0.5.1",
     "express": "^3.20",
-    "fstream-ignore": "1.0.x",
     "http-proxy": "^1.8.1",
     "inquirer": "^0.8.0",
     "minimatch": "^2.0.1",
@@ -61,8 +60,14 @@
   },
   "devDependencies": {
     "chai": "^1.10.0",
-    "nock": "^0.59.1",
-    "sinon": "1.12.2",
-    "rimraf": "^2.2.8"
+    "eslint": "^3.6.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.4.1",
+    "mocha": "^3.1.2",
+    "nock": "9.0.0",
+    "rimraf": "^2.2.8",
+    "sinon": "1.12.2"
   }
 }
