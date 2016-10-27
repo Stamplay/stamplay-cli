@@ -1,155 +1,142 @@
-var assert = require("assert"),
-	sinon = require('sinon'),
-	help = require('../../lib/help'),
-	path = require('path'),
-	rmdir = require('rimraf'),
-	fs = require('fs'),
-	exec = require('child_process').exec
+/* globals describe, beforeEach, afterEach, it */
+const assert = require('assert');
+const path = require('path');
+const rmdir = require('rimraf');
+const fs = require('fs');
+const exec = require('child_process').exec;
 
-var apiKey = 'c4300c0c4c0df03e9fbaae97e53f297347fcd5d7b44811c2025dd52fd2f45843'
-var appId = 'clitest'
-var lastEnterChar = new RegExp('\n$')
-var stamplay_bin = path.join(__dirname, '../../', '/bin/stamplay')
-var fixtures_folder = path.join(__dirname, '../', '/fixtures')
+const apiKey = '2e659c075ca2557eb2ecedb550cd25c7b6e4333b0032cc653b5bc44d2ec1c96d';
+const appId = 'clitest';
 
-describe('Stamplay cli start command', function () {
-		
-	beforeEach(function(done){
-		var data = {}
-		data.appId = appId
-		data.apiKey = apiKey
-		data.public = './'
-		data.ignore = ["stamplay.json", "**/.*", "**/node_modules/**"]
-		var dataString = JSON.stringify(data, null, 2) + '\n'
-		rmdir(fixtures_folder, function(){
-			fs.mkdir(fixtures_folder, function(){
-  			fs.writeFile(fixtures_folder + '/stamplay.json', dataString, function(){
-  				fs.writeFile(fixtures_folder + '/index.html', '<h1>start command</h1>', function(){
-  					done()
-  				})
-  			})
-  		})
-		})
-	})
+const lastEnterChar = new RegExp('\n$');
+const stamplayBin = path.join(__dirname, '../../', '/bin/stamplay');
+const fixturesFolder = path.join(__dirname, '../', '/fixtures');
 
-	it('stamplay  (no stamplay.json file)', function (done) {
-		exec(stamplay_bin + ' start', function (error, stdout, stderr) {
-			stdout = stdout.replace(lastEnterChar, '')
+describe('Stamplay cli start command', () => {
+  beforeEach((done) => {
+    const data = {};
+    data.appId = appId;
+    data.apiKey = apiKey;
+    data.public = './';
+    data.ignore = ['stamplay.json', '**/.*', '**/node_modules/**'];
+    const dataString = `${JSON.stringify(data, null, 2)}\n`;
+    rmdir(fixturesFolder, () => {
+      fs.mkdir(fixturesFolder, () => {
+        fs.writeFile(`${fixturesFolder}/stamplay.json`, dataString, () => {
+          fs.writeFile(`${fixturesFolder}/index.html`, '<h1>start command</h1>', () => {
+            done();
+          });
+        });
+      });
+    });
+  });
 
-			assert.equal(error.code, 1)
-			assert.equal(stderr, '')
-			assert.equal(stdout, 'Error : missing stamplay.json file, are you sure that is the right directory?')
+  it('stamplay  (no stamplay.json file)', (done) => {
+    exec(`${stamplayBin} start`, (error, stdout, stderr) => {
+      stdout = stdout.replace(lastEnterChar, '');
+      assert.equal(error.code, 1);
+      assert.equal(stderr, '');
+      assert.equal(stdout, 'Error : missing stamplay.json file, are you sure that is the right directory?');
+      done();
+    });
+  });
 
-			done()	
-		})
-	})
+  it('stamplay start', (done) => {
+    const terminal = require('child_process').spawn('bash');
+    terminal.stdout.on('data', (data) => {
+      const output = data.toString();
+      assert.equal(output, 'Server running with ./ as public folder at the following address http://localhost:8080\n');
+    });
 
-	it('stamplay start', function (done) {
-		this.timeout(5000)
-		var terminal = require('child_process').spawn('bash')	
-		
-		terminal.stdout.on('data', function (data) {
-		  var output = data.toString()
-		  assert.equal(output, 'Server running with ./ as public folder at the following address http://localhost:8080\n')
-		})
+    setTimeout(() => {
+      terminal.kill();
+    }, 1000);
 
-		setTimeout(function(){
-	  	process.kill(terminal.pid+1,'SIGINT') 
-	  	terminal.kill()	
-	  }, 1000)
-		
-		terminal.on('exit', function (code) {
-			done()
-		})
-			
-		terminal.stdin.write('cd ' + fixtures_folder + ' && ' + stamplay_bin + ' start')
-		terminal.stdin.write('\n')
-		terminal.stdin.end()
-	})
+    terminal.on('exit', (code) => {
+      done();
+    });
+    terminal.stdin.write(`cd ${fixturesFolder} && ${stamplayBin} start`);
+    terminal.stdin.write('\n');
+    terminal.stdin.end();
+  });
 
-	it('stamplay start with custom port (-p)', function (done) {
-		this.timeout(5000)
-		var messages = 0
-		var terminal = require('child_process').spawn('bash')	
-		
-		terminal.stdout.on('data', function (data) {
-		  var output = data.toString()
-		  messages++
-		  switch(messages) {
-		  	case '1':
-		  		assert.equal(output, 'Warning: in case you get CORS request errors you have to add \'localhost:[PORT]\' in your Hosting -> Enabled CORS domain settings\n')
-		  		break
-		  	case '2':
-		  		assert.equal(output, 'Server running with ./ as public folder at the following address http://localhost:8000\n')
-		  		break
-		  }	  
-		})
-		
-		setTimeout(function(){
-	  	process.kill(terminal.pid+1,'SIGINT') 
-	  	terminal.kill()	
-	  }, 1000)
+  it('stamplay start with custom port (-p)', (done) => {
+    var messages = 0;
+    const terminal = require('child_process').spawn('bash');
 
-		terminal.on('exit', function (code) {
-			done()
-		})
-			
-		terminal.stdin.write('cd ' + fixtures_folder + ' && ' + stamplay_bin + ' start -p 8000')
-		terminal.stdin.write('\n')
-		terminal.stdin.end()
-	})
+    terminal.stdout.on('data', (data) => {
+      var output = data.toString();
+      messages++;
+      switch (messages) {
+      case '1':
+        assert.equal(output, 'Warning: in case you get CORS request errors you have to add \'localhost:[PORT]\' in your Hosting -> Enabled CORS domain settings\n');
+        break;
+      case '2':
+        assert.equal(output, 'Server running with ./ as public folder at the following address http://localhost:8000\n');
+        break;
+      }
+    });
 
-	it('stamplay start with custom port (--port)', function (done) {
-		this.timeout(5000)
-		var messages = 0
-		var terminal = require('child_process').spawn('bash')	
-		
-		terminal.stdout.on('data', function (data) {
-		  var output = data.toString()
-		  messages++
-		  switch(messages) {
-		  	case '1':
-		  		assert.equal(output, 'Warning: in case you get CORS request errors you have to add \'localhost:[PORT]\' in your Hosting -> Enabled CORS domain settings\n')
-		  		break
-		  	case '2':
-		  		assert.equal(output, 'Server running with ./ as public folder at the following address http://localhost:8000\n')
-		  		break
-		  }
-		})
+    setTimeout(() => {
+      terminal.kill();
+    }, 1000);
 
-		setTimeout(function(){
-	  	process.kill(terminal.pid+1,'SIGINT') 
-	  	terminal.kill()	
-	  }, 1000)
-		
-		terminal.on('exit', function (code) {
-			done()
-		})
-			
-		terminal.stdin.write('cd ' + fixtures_folder + ' && ' + stamplay_bin + ' start --port 8000')
-		terminal.stdin.write('\n')
-		terminal.stdin.end()
-	})
+    terminal.on('exit', (code) => {
+      done();
+    });
 
-	it('stamplay start with wrong port', function (done) {
-		exec('cd ' + fixtures_folder + ' && ' + stamplay_bin + ' start -p test', function (error, stdout, stderr) {
-			stdout = stdout.replace(lastEnterChar, '')
-			assert.equal(error.code, 1)
-			assert.equal(stderr, '')
-			assert.equal(stdout, 'Error: port parameter must be an integer')
+    terminal.stdin.write(`cd  ${fixturesFolder} && ${stamplayBin} start -p 8000`);
+    terminal.stdin.write('\n');
+    terminal.stdin.end();
+  });
 
-			done()	
-		})
-	})
+  it('stamplay start with custom port (--port)', (done) => {
+    var messages = 0;
+    const terminal = require('child_process').spawn('bash');
 
-	it('stamplay start with both p and port parameter defined', function (done) {
-		exec('cd ' + fixtures_folder + ' && ' + stamplay_bin + ' start -p test --port test', function (error, stdout, stderr) {
-			stdout = stdout.replace(lastEnterChar, '')
-			assert.equal(error.code, 1)
-			assert.equal(stderr, '')
-			assert.equal(stdout, 'Error: "p" parameter is an alias of "proxy" parameter, you must use only one of them')
+    terminal.stdout.on('data', (data) => {
+      var output = data.toString();
+      messages++;
+      switch (messages) {
+      case '1':
+        assert.equal(output, 'Warning: in case you get CORS request errors you have to add \'localhost:[PORT]\' in your Hosting -> Enabled CORS domain settings\n');
+        break;
+      case '2':
+        assert.equal(output, 'Server running with ./ as public folder at the following address http://localhost:8000\n');
+        break;
+      }
+    });
 
-			done()	
-		})
-	})
-})
+    terminal.on('exit', (code) => {
+      done();
+    });
+
+    setTimeout(() => {
+      terminal.kill();
+    }, 1000);
+
+    terminal.stdin.write(`cd ${fixturesFolder} && ${stamplayBin} start --port 8000`);
+    terminal.stdin.write('\n');
+    terminal.stdin.end();
+  });
+
+  it('stamplay start with wrong port', (done) => {
+    exec(`cd ${fixturesFolder} && ${stamplayBin} start -p test`, (error, stdout, stderr) => {
+      stdout = stdout.replace(lastEnterChar, '');
+      assert.equal(error.code, 1);
+      assert.equal(stderr, '');
+      assert.equal(stdout, 'Error: port parameter must be an integer');
+      done();
+    });
+  });
+
+  it('stamplay start with both p and port parameter defined', (done) => {
+    exec(`cd ${fixturesFolder} && ${stamplayBin} start -p test --port test`, (error, stdout, stderr) => {
+      stdout = stdout.replace(lastEnterChar, '');
+      assert.equal(error.code, 1);
+      assert.equal(stderr, '');
+      assert.equal(stdout, 'Error: "p" parameter is an alias of "proxy" parameter, you must use only one of them');
+      done();
+    });
+  });
+});

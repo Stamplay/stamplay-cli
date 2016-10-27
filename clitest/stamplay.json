@@ -1,6 +1,6 @@
 {
   "appId": "clitest",
-  "apiKey": "c4300c0c4c0df03e9fbaae97e53f297347fcd5d7b44811c2025dd52fd2f45843",
+  "apiKey": "2e659c075ca2557eb2ecedb550cd25c7b6e4333b0032cc653b5bc44d2ec1c96d",
   "public": "./",
   "ignore": [
     "stamplay.json",
