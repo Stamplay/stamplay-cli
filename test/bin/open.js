@@ -13,20 +13,20 @@ var stamplay_bin = path.join(__dirname, '../../', '/bin/stamplay')
 var fixtures_folder = path.join(__dirname, '../', '/fixtures')
 
 describe('Stamplay cli open command', function () {
-		
-	beforeEach(function(done){
+
+	beforeEach(function (done) {
 		var data = {}
 		data.appId = appId
 		data.apiKey = apiKey
 		data.public = './'
 		data.ignore = ["stamplay.json", "**/.*", "**/node_modules/**"]
 		var dataString = JSON.stringify(data, null, 2) + '\n'
-		rmdir(fixtures_folder, function(){
-			fs.mkdir(fixtures_folder, function(){
-  			fs.writeFile(fixtures_folder + '/stamplay.json', dataString, function(){
-  				done()
-  			})
-  		})
+		rmdir(fixtures_folder, function () {
+			fs.mkdir(fixtures_folder, function () {
+				fs.writeFile(fixtures_folder + '/stamplay.json', dataString, function () {
+					done()
+				})
+			})
 		})
 	})
 
@@ -38,16 +38,16 @@ describe('Stamplay cli open command', function () {
 			assert.equal(stderr, '')
 			assert.equal(stdout, 'Error : missing stamplay.json file, are you sure that is the right directory?')
 
-			done()	
+			done()
 		})
 	})
 
 	it('stamplay open', function (done) {
+		this.timeout(10000);
 		exec('cd ' + fixtures_folder + ' && ' + stamplay_bin + ' open', function (error, stdout, stderr) {
 			assert.equal(error, null)
 			assert.equal(stderr, '')
-
-			done()	
+			done()
 		})
 	})
 })
